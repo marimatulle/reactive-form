@@ -1,0 +1,38 @@
+<body class="all">
+  <section class="form">
+    <h1 class="title">Reactive Form</h1>
+    <form (ngSubmit)="submit()" [formGroup]="userForm" #formDir="ngForm">
+      <div class="form-group">
+        <input
+          type="text"
+          id="name"
+          placeholder="Your name here"
+          formControlName="name"
+          required
+        />
+        <div *ngIf="name.invalid && formDir.submitted" class="validation-error">
+          <p *ngIf="name.errors?.['required']">Required field</p>
+        </div>
+      </div>
+      <br />
+      <div class="form-group">
+        <input
+          type="email"
+          id="email"
+          placeholder="Your e-mail here"
+          formControlName="email"
+          required
+        />
+        <div
+          *ngIf="email.invalid && formDir.submitted"
+          class="validation-error"
+        >
+          <p *ngIf="email.errors?.['required']">Required field</p>
+          <p *ngIf="email.errors?.['email']">Invalid e-mail</p>
+        </div>
+      </div>
+      <br />
+    </form>
+    <button (click)="submit()">Submit</button>
+  </section>
+</body>
